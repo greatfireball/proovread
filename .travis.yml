@@ -1,10 +1,10 @@
 language: perl
 perl:
-  - "5.10"
-  - "5.12"
-  - "5.14"
-  - "5.18"
-  - "5.20"
+  - "5.10.1-thr"
+  - "5.12-thr"
+  - "5.14-thr"
+  - "5.18-thr"
+  - "5.20-thr"
 sudo:
   false
 addons:
