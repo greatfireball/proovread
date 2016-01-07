@@ -12,6 +12,7 @@ addons:
     packages:
     - liblog-log4perl-perl
     - ncbi-blast+
+    - perl
 env:
     - PERL5LIB=/usr/share/perl5/
 install:
