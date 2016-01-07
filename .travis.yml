@@ -14,9 +14,13 @@ addons:
     - ncbi-blast+
     - perl
 env:
-    - PERL5LIB=/usr/share/perl5/:~/perl5/lib/perl5/
+    - PERL5LIB=/usr/share/perl5/:~/perl5/lib/perl5/:"$PERL5LIB"
+    - PATH=~/samtools-1.3/:"$PATH"
 install:
     - export RELEASE_TESTING=1 AUTOMATED_TESTING=1 AUTHOR_TESTING=1 HARNESS_OPTIONS=c HARNESS_TIMER=1
     - cpanm --quiet --notest Devel::Cover::Report::Coveralls File::Which
+    - wget 'https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2'
+    - tar xjf samtools-1.3.tar.bz2
+    - cd samtools-1.3 && make
 script: 
     - bin/proovread --sample
