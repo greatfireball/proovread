@@ -89,7 +89,7 @@ my $VB = Verbose->new(
 
 
 #$VS->verbose("Running proovread-$VERSION");
-$VS->verbose(sprintf("Running proovread-%vd under Perl %vd", $VERSION, $^V));
+$VS->verbose(sprintf("Running proovread-$VERSION under Perl %vd", $^V));
 
 ##------------------------------------------------------------------------##
 ## Config
