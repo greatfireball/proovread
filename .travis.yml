@@ -5,7 +5,6 @@ perl:
   - "5.14.4-thr"
   - "5.18.3-thr"
   - "5.20.1-thr"
-  - "5.22.0-thr"
 sudo:
   false
 addons:
@@ -14,20 +13,19 @@ addons:
     - liblog-log4perl-perl
     - ncbi-blast+
 env:
-    - PERL5LIB=/usr/share/perl5/:~/perl5/lib/perl5/:"$PERL5LIB"
+#    - PERL5LIB=/usr/share/perl5/:~/perl5/lib/perl5/:"$PERL5LIB"
+    - SAMTOOLSVERSION="1.3"
+    - SAMTOOLSVERSION="1.2"
+    - SAMTOOLSVERSION="1.1"
 before_install:
   - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
   - source ~/travis-perl-helpers/init
   - build-perl
   - perl -V
-  #- build-dist
-  #- cd $BUILD_DIR             # $BUILD_DIR is set by the build-dist command
 install:
-    - export RELEASE_TESTING=1 AUTOMATED_TESTING=1 AUTHOR_TESTING=1 HARNESS_OPTIONS=c HARNESS_TIMER=1
-    - cpanm --quiet --notest Devel::Cover::Report::Coveralls File::Which
     - cd util/bwa && make && cd -
-    - wget 'https://github.com/samtools/samtools/releases/download/1.3/samtools-1.3.tar.bz2'
-    - tar xjf samtools-1.3.tar.bz2
-    - cd samtools-1.3 && make && export PATH=$PWD:"$PATH" && ls && pwd && cd -
+    - wget 'https://github.com/samtools/samtools/releases/download/"$SAMTOOLSVERSION"/samtools-"$SAMTOOLSVERSION".tar.bz2'
+    - tar xjf samtools-"$SAMTOOLSVERSION".tar.bz2
+    - cd samtools-"$SAMTOOLSVERSION" && make && export PATH=$PWD:"$PATH" && ls && pwd && cd -
 script: 
     - bin/proovread --sample
