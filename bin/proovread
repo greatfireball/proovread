@@ -96,6 +96,7 @@ $VS->verbose("Running proovread-$VERSION");
 
 # load core defaults
 $VS->verbose("Reading core config");
+$VS->verbose(sprintf "PERL-VERSION %vd", $^V);
 my $cfg_core_file = "$RealBin/../proovread.cfg";
 my %cfg = do $cfg_core_file;
 $V->exit("An error ocuured while processing the config file: $@") if $@; # capture do errors on cfg
